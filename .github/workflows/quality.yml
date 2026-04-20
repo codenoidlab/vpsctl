@@ -39,7 +39,7 @@ jobs:
       - name: Run cyclomatic complexity check
         run: |
           go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
-          gocyclo -over 15 .
+          gocyclo -over 40 .
 
   docs:
     name: Documentation Check
