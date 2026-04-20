@@ -68,6 +68,9 @@ jobs:
     name: Security Scan
     runs-on: ubuntu-latest
 
+    permissions:
+      security-events: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -82,7 +85,7 @@ jobs:
           args: '-no-fail -fmt sarif -out gosec-results.sarif ./...'
 
       - name: Upload Gosec results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: gosec-results.sarif
 

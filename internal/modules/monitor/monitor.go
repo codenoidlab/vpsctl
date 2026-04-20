@@ -59,8 +59,9 @@ func fetchStats() DataMsg {
 	cpuResult := core.RunCommand("top -bn1 | grep 'Cpu(s)' | awk '{print $8}' | cut -d. -f1")
 	if cpuResult.Err == nil {
 		idle := 0
-		fmt.Sscanf(cpuResult.Output, "%d", &idle)
-		data.cpuPercent = 100 - idle
+		if _, err := fmt.Sscanf(cpuResult.Output, "%d", &idle); err == nil {
+			data.cpuPercent = 100 - idle
+		}
 	}
 
 	// RAM from /proc/meminfo
@@ -76,7 +77,7 @@ func fetchStats() DataMsg {
 			data.diskTotal = parts[0]
 			data.diskUsed = parts[1]
 			pct := strings.TrimSuffix(parts[2], "%")
-			fmt.Sscanf(pct, "%d", &data.diskPct)
+			fmt.Sscanf(pct, "%d", &data.diskPct) // error check not critical for disk percentage
 		}
 	}
 
@@ -111,8 +112,8 @@ func fetchStats() DataMsg {
 		parts := strings.Fields(netResult.Output)
 		if len(parts) == 2 {
 			var rx, tx int64
-			fmt.Sscanf(parts[0], "%d", &rx)
-			fmt.Sscanf(parts[1], "%d", &tx)
+			fmt.Sscanf(parts[0], "%d", &rx) // error check not critical for network data
+			fmt.Sscanf(parts[1], "%d", &tx) // error check not critical for network data
 			data.netStats = fmt.Sprintf("RX: %s  TX: %s",
 				formatBytes(rx), formatBytes(tx))
 		}

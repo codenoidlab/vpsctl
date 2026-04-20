@@ -63,8 +63,9 @@ func fetchDashboardData() DataLoadedMsg {
 	cpuResult := core.RunCommand("top -bn1 | grep 'Cpu(s)' | awk '{print $8}' | cut -d. -f1")
 	if cpuResult.Err == nil && cpuResult.Output != "" {
 		idle := 0
-		fmt.Sscanf(cpuResult.Output, "%d", &idle)
-		data.cpuPercent = 100 - idle // usage = 100 - idle
+		if _, err := fmt.Sscanf(cpuResult.Output, "%d", &idle); err == nil {
+			data.cpuPercent = 100 - idle // usage = 100 - idle
+		}
 	}
 
 	// --- RAM usage (from /proc/meminfo) ---
@@ -82,7 +83,7 @@ func fetchDashboardData() DataLoadedMsg {
 			data.diskUsed = parts[1]
 			// parts[2] looks like "45%" — strip the % and parse
 			pct := strings.TrimSuffix(parts[2], "%")
-			fmt.Sscanf(pct, "%d", &data.diskPercent)
+			fmt.Sscanf(pct, "%d", &data.diskPercent) // error check not critical for disk percentage
 		}
 	}
 
