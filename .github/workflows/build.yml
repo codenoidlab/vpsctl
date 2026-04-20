@@ -119,7 +119,7 @@ jobs:
           GOOS=windows GOARCH=amd64 go build -o vpsctl-windows-amd64.exe ./cmd/vps
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           draft: false
           prerelease: false
