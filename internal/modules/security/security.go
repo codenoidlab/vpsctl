@@ -176,7 +176,7 @@ func fetchSecurityData() DataMsg {
 					))
 					banned := 0
 					if jailStatus.Err == nil {
-						fmt.Sscanf(strings.TrimSpace(strings.Split(jailStatus.Output, ":")[1]), "%d", &banned)
+						_, _ = fmt.Sscanf(strings.TrimSpace(strings.Split(jailStatus.Output, ":")[1]), "%d", &banned) // intentionally ignoring parse error for fail2ban stats
 					}
 					data.fail2banJails = append(data.fail2banJails, Fail2banJail{
 						Name:    jailName,

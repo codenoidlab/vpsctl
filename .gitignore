@@ -12,10 +12,10 @@
 /bin/
 /dist/
 /build/
-vps
-vps-linux-amd64
-vpsctl
-vpsctl-linux-amd64
+/vps
+/vps-linux-amd64
+/vpsctl
+//vpsctl-linux-amd64
 
 # Test binary, built with `go test -c`
 *.test
