@@ -1,0 +1,132 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.so.*
+*.dylib
+*.o
+*.a
+
+# Build outputs
+/bin/
+/dist/
+/build/
+vps
+vps-linux-amd64
+vpsctl
+vpsctl-linux-amd64
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+*.cover
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.metadata
+.code-workspace
+
+# IDE specific
+.fleet/
+.gradle
+.idea/modules.xml
+.idea/modules
+.idea/*.iml
+.idea/*.iml
+**/*.iml
+.idea/workspace.xml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+/tmp/
+*.tmp
+*.bak
+*.swp
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Distribution / packaging
+/site/
+
+# Python (if any Python scripts are added)
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Node modules (if Node.js development code)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Docker
+*.docker
+docker-compose.override.yml
+
+# Generated files
+*.pb.go
+*.pb.*.go
+
+# MacOS
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Windows
+ehthumbs.db
+[Dd]esktop.ini
+
+# Vim
+.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Git
+.git/
+.gitmodules
+
+# CI/CD
+.github/workflows/*.bak
+
+# Documentation
+PROJECT_OVERVIEW.txt
