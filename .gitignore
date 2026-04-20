@@ -130,3 +130,7 @@ ehthumbs.db
 
 # Documentation
 PROJECT_OVERVIEW.txt
+# Local and setup documentation
+PUSH_TO_GITHUB.sh
+DOCUMENTATION_SUMMARY.md
+SETUP_COMPLETE.md
