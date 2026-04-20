@@ -334,21 +334,7 @@ View() renders new state
 
 ## 🤝 Contributing
 
-We welcome contributions! Whether it's bug reports, feature requests, or code:
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m 'Add amazing feature'`
-4. **Push** to branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
-
-### Development Guidelines
-
-- Write clear commit messages
-- Add tests for new features
-- Update documentation
-- Follow Go conventions
-- Test on actual Ubuntu systems if possible
+We welcome contributions from everyone! Whether it's bug reports, feature requests, or code updates, please check out our [Contributing Guide](CONTRIBUTING.md) to get started on the right foot.
 
 ---
 
