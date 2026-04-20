@@ -1,0 +1,36 @@
+version: 2
+updates:
+  # Check Go dependencies daily
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "03:00"
+      timezone: "UTC"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "codenoidlab"
+    assignees:
+      - "codenoidlab"
+    labels:
+      - "dependencies"
+      - "go"
+    open-pull-requests-limit: 5
+    pull-request-branch-name:
+      separator: "/"
+    
+  # Check GitHub Actions updates weekly
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "UTC"
+    reviewers:
+      - "codenoidlab"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    open-pull-requests-limit: 3

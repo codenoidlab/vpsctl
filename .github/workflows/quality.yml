@@ -1,0 +1,65 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better analysis
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+
+      - name: Run vet
+        run: go vet ./...
+
+      - name: Run fmt check
+        run: |
+          if ! go fmt ./...; then
+            echo "❌ Code formatting issues found"
+            exit 1
+          fi
+
+      - name: Check for TODOs
+        run: |
+          grep -r "TODO" --include="*.go" || true
+
+      - name: Run cyclomatic complexity check
+        uses: dave-c-r/gocyclo-action@v2
+        with:
+          threshold: 15
+
+  docs:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check README exists
+        run: test -f README.md
+
+      - name: Check Makefile exists
+        run: test -f Makefile
+
+      - name: Check go.mod exists
+        run: test -f go.mod
+
+      - name: Check if documentation is up to date
+        run: |
+          if grep -q "PLACEHOLDER\|TODO\|FIXME" README.md; then
+            echo "❌ Documentation contains placeholders"
+            exit 1
+          fi
