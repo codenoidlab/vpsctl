@@ -83,7 +83,7 @@ func fetchDashboardData() DataLoadedMsg {
 			data.diskUsed = parts[1]
 			// parts[2] looks like "45%" — strip the % and parse
 			pct := strings.TrimSuffix(parts[2], "%")
-			fmt.Sscanf(pct, "%d", &data.diskPercent) // error check not critical for disk percentage
+			_ = fmt.Sscanf(pct, "%d", &data.diskPercent) // intentionally ignoring parse error for disk percentage
 		}
 	}
 

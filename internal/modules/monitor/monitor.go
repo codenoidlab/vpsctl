@@ -77,7 +77,7 @@ func fetchStats() DataMsg {
 			data.diskTotal = parts[0]
 			data.diskUsed = parts[1]
 			pct := strings.TrimSuffix(parts[2], "%")
-			fmt.Sscanf(pct, "%d", &data.diskPct) // error check not critical for disk percentage
+			_ = fmt.Sscanf(pct, "%d", &data.diskPct) // intentionally ignoring parse error for disk percentage
 		}
 	}
 
@@ -112,8 +112,8 @@ func fetchStats() DataMsg {
 		parts := strings.Fields(netResult.Output)
 		if len(parts) == 2 {
 			var rx, tx int64
-			fmt.Sscanf(parts[0], "%d", &rx) // error check not critical for network data
-			fmt.Sscanf(parts[1], "%d", &tx) // error check not critical for network data
+			_ = fmt.Sscanf(parts[0], "%d", &rx) // intentionally ignoring parse error for network stats
+			_ = fmt.Sscanf(parts[1], "%d", &tx) // intentionally ignoring parse error for network stats
 			data.netStats = fmt.Sprintf("RX: %s  TX: %s",
 				formatBytes(rx), formatBytes(tx))
 		}

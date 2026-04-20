@@ -122,8 +122,8 @@ func getRepoInfo(path string) RepoInfo {
 	if aheadBehind.Err == nil && aheadBehind.Output != "" {
 		parts := strings.Fields(aheadBehind.Output)
 		if len(parts) == 2 {
-			fmt.Sscanf(parts[0], "%d", &repo.Behind) // error check not critical for git stats
-			fmt.Sscanf(parts[1], "%d", &repo.Ahead)  // error check not critical for git stats
+			_ = fmt.Sscanf(parts[0], "%d", &repo.Behind) // intentionally ignoring parse error for git stats
+			_ = fmt.Sscanf(parts[1], "%d", &repo.Ahead)  // intentionally ignoring parse error for git stats
 		}
 	}
 
