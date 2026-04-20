@@ -37,9 +37,9 @@ jobs:
           grep -r "TODO" --include="*.go" || true
 
       - name: Run cyclomatic complexity check
-        uses: dave-c-r/gocyclo-action@v2
-        with:
-          threshold: 15
+        run: |
+          go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
+          gocyclo -over 15 .
 
   docs:
     name: Documentation Check
